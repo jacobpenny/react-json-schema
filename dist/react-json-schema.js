@@ -32,6 +32,8 @@ var ReactJsonSchema = function () {
       var elements = null;
       if (Array.isArray(schema)) {
         elements = this.parseSubSchemas(schema);
+      } else if (typeof schema === 'string') {
+        element = schema;
       } else if (schema) {
         element = this.createComponent(schema);
       }
