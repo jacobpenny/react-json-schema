@@ -48,9 +48,13 @@ var ReactJsonSchema = function () {
       var index = 0;
       Object.keys(subSchemas).forEach(function (key) {
         var subSchema = subSchemas[key];
-        subSchema.key = typeof subSchema.key !== 'undefined' ? subSchema.key : index;
-        Components.push(_this.parseSchema(subSchema));
-        index++;
+        if (typeof subSchema === 'string') {
+          Components.push(subSchema);
+        } else {
+          subSchema.key = typeof subSchema.key !== 'undefined' ? subSchema.key : index;
+          Components.push(_this.parseSchema(subSchema));
+          index++;
+        }
       });
       return Components;
     }
